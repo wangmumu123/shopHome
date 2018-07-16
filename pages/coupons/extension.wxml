@@ -1,0 +1,24 @@
+<!--推广二维码-->
+<import src="../public/shear.wxml" />
+<view class="container " data-page="pages.coupons.extenison">
+    <view class=" membership bgF">
+        <view class="membershipHeard">
+            <image src="{{coupontsData.logo}}"></image>
+        </view>
+        <view>{{coupontsData.store_name}}
+        </view>
+        <view>
+            <text>{{coupontsData.store_intro}}</text>
+        </view>
+        <view class="membershipCar">
+            <image src="{{ewm}}"  mode="widthFix"></image>
+        </view>
+        <view>
+            <text>扫一扫上面的二维码，直接访问本店</text>
+        </view>
+    </view>
+    <view class="submit" bindtap="shear">快速分享给好友</view>
+    <block>
+        <template is="shear" wx:if="{{shear}}" />
+    </block>
+</view>

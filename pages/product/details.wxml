@@ -1,0 +1,239 @@
+<!--产品详情页面-->
+<import src="../public/shear.wxml" />
+<import src="/pages/think/template/template.wxml" />
+<import src="../public/shoppingCat.wxml" />
+<import src="../public/orderLayer.wxml" />
+<import src="../public/warning.wxml" />
+<scroll-view class="container" style="height: {{scrollHeight}}px; background:{{shopHomeData.bgcolor}} " scroll-y="true" scroll-top="{{scrollTop.scroll_top}}" data-page="pages.product.details">
+    <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <block>
+        <template is="shear" wx:if="{{shear}}" />
+    </block>
+    <view class="asideDetails">
+        <text class="goTop iconfont icon-dingbu" bindtap="goTopFun"></text>
+        <navigator url="/pages/index/index" hover-class="none" open-type="switchTab">
+            <text class="iconfont icon-store "  ></text>
+        </navigator>
+        <navigator url="/pages/shoppingCat/index" hover-class="none" open-type="switchTab">
+            <text class="iconfont icon-gouwuche1 shoppingCatIcon" wx:if="{{shoppingCatNum}}"></text>
+        </navigator>
+    </view>
+    <block>
+        <template is="orderLayer" wx-if="{{businessShow}}" data="{{business:business}}" />
+    </block>
+    <swiper class="detailsSwiper bgF" autoplay="false" interval="5500" indicator-dots="true">
+        <swiper-item wx:for-items="{{productData.product.images}}" wx:key="menuId">
+            <view style="background:url('{{item.image}}') center; background-size:cover" class="view"></view>
+        </swiper-item>
+    </swiper>
+    <view class="detailsCentent  section">
+        <view class="productName clearfix">
+            <view class="productH2">{{productData.product.name}}</view>
+            <view class="span">
+                <text class="iconfont icon-xin {{productData.product.is_collect==1?'active':''}}" bindtap="collect" data-dataid="{{productData.product.product_id}}" data-type="1"></text>
+                <text class="iconfont icon-zhuanfa" bindtap="shear"></text>
+            </view>
+        </view>
+        <view class="productInfo clearfix ">
+            <view class="productPrice">
+                <view>
+                    <text>￥{{productData.product.price}}</text>
+                </view>
+                <view class="" wx:if="{{productData.product.is_reservation!=0}}">
+                    <text style="color:#999">预约价：</text>￥{{productData.product.reservation_deposit}}</view>
+            </view>
+            <view class="produtButton clearfix" wx:if="{{productData.product.is_reservation*1!=0}}">
+                <text class="shoppingCatButton" data-type="make" bindtap="oppenShopping" data-product="{{productData.product.product_id}}">预约</text>
+            </view>
+        </view>
+        <view class="productInfoState">
+            <view>运费：
+                <text>{{productData.product.postage}}</text>
+            </view>
+            <view>销量：
+                <text>{{productData.product.sales}}</text>
+            </view>
+            <view>库存：
+                <text>{{productData.product.quantity}}</text>
+            </view>
+            <view>喜欢：
+                <text>{{productData.product.collect}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="propaganda  section" wx:if="{{productData.proudct.recommend_title==''}}">
+        <text class="iconfont icon-laba"></text>
+        <text>{{productData.proudct.recommend_title}}</text>
+    </view>
+    <view class="productLabel section" ng-if="{{productData.credit_arr==''}}">
+        <view class="ulList">
+            <view wx:for="{{productData.credit_arr}}">
+                <text>{{item.type}}</text>{{item.name}}</view>
+        </view>
+    </view>
+    <view class="discountInfo section" wx:if="{{productData.discount_arr!=''}}">
+        <view class="title">优惠信息</view>
+        <view class="ulList">
+            <view wx:for="{{productData.discount_arr}}">
+                <text>{{item.name}}</text> {{item.msg}}
+            </view>
+        </view>
+    </view>
+    <view class="productDetails section">
+        <view class="ulList">
+            <view class="open">
+                <text>宝贝规格</text>
+                <text class="productCat shoppingCatButton" bindtap="oppenShopping" data-type="add_cart" data-product="{{productData.product.product_id}}">显示宝贝规格</text>
+            </view>
+            <view class="open">
+                <navigator url="/pages/index/index" hover-class="none" open-type="switchTab">
+                    <text class="textOmitted">{{productData.store.name}}</text>
+                    <text>进入店铺</text>
+                </navigator>
+            </view>
+            <view class="open" bindtap="calling">
+                <text>{{productData.store.tel}}</text>
+                <text>联系门店</text>
+            </view>
+        </view>
+    </view>
+    <view class="productInfoList section">
+        <view class="title ulList">
+            <view class="{{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav">商品图文</view>
+            <view class="{{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav" data-type="record">购买记录</view>
+            <view class="{{currentTab==2 ? 'active' : ''}}" data-current="2" bindtap="swichNav">评价</view>
+            <view class="{{currentTab==3 ? 'active' : ''}}" data-current="3" bindtap="swichNav">同店宝贝</view>
+        </view>
+        <view class="productInfo">
+            <view class="productImgTxt {{currentTab==0 ? 'active' : ''}}">
+                <view class="showTxt" wx-if="{{productData.product.info==''}}">
+                    <image src="../../images/imgTxt.png"></image>
+                    <view>暂时还没有商品介绍哦!</view>
+                </view>
+                <view class="productTxt">
+                    <template is="THINK-html" data="{{data:productData.product.info}}" />
+                </view>
+            </view>
+            <view class="shopHistory {{currentTab==1 ? 'active' : ''}}">
+                <view class="showTxt smallImg" wx:if="{{recordData.order_list==''}}">
+                    <image src="../../images/shop_03.png" alt=""></image>
+                    <view>该商品还没有人购买呢!</view>
+                </view>
+                <view wx:if="{{recordData.order_list!=''}}">
+                    <view class="title">
+                        <text class="span">用户名称</text>
+                        <text class="span">件数</text>
+                        <text class="span">时间</text>
+                    </view>
+                    <view class="ulList">
+                        <view wx:for="{{recordData.order_list}}">
+                            <view class="span">
+                                <image src="{{item.avatar}}"></image>
+                                <text class="">{{item.nickname}}</text>
+                            </view>
+                            <view class="span">{{item.pro_num}}</view>
+                            <view class="span">{{item.add_time}}</view>
+                        </view>
+                    </view>
+                    <view class="showTxt showTxtMore recordTxt" wx:if="{{!recordData.next_page}}">
+                        <text>没有更多记录啦!</text>
+                    </view>
+                </view>
+            </view>
+            <view class="productEvaluate {{currentTab==2 ? 'active' : ''}}">
+                <view wx:if="{{productData.comment_data.total*1!=0}}">
+                    <view class="title">
+                        <text class="span">评价({{productData.comment_data.total}})</text>
+                        <view class="span">好评
+                            <text>{{productData.comment_data.t3*100/productData.comment_data.total*1}}%</text>
+                        </view>
+                    </view>
+                    <view class="evaluateTitle clearfix ulList">
+                        <view class="{{productList==0 ? 'active' : ''}}" data-productList="0" data-tab="HAO" bindtap="productListSwichNav">好评
+                            <text data-productList="0" data-tab="HAO">{{productData.comment_data.t3}}</text>
+                        </view>
+                        <view class="{{productList==1 ? 'active' : ''}}" data-productList="1" data-tab="ZHONG" bindtap="productListSwichNav">中评
+                            <text data-productList="1" data-tab="ZHONG">{{productData.comment_data.t2}}</text>
+                        </view>
+                        <view class="{{productList==2 ? 'active' : ''}}" data-productList="2" data-tab="CHA" bindtap="productListSwichNav">差评
+                            <text data-productList="2" data-tab="CHA">{{productData.comment_data.t1}}</text>
+                        </view>
+                        <view class="{{productList==3 ? 'active' : ''}}" data-productList="3" data-tab="IMAGE" bindtap="productListSwichNav">有图
+                            <text data-productList="3" data-tab="IMAGE">{{productData.comment_data.t4}}</text>
+                        </view>
+                    </view>
+                    <view class="commentList">
+                        <view>
+                            <view class="showTxt smallImg" wx:if="{{commentData.comment_list==''}}">
+                                <image src="../../images/shop_06.png" alt=""></image>
+                                <view>暂无评价!快来抢沙发吧!</view>
+                            </view>
+                            <view class="evaluateTitleList">
+                                <view wx:for="{{commentData.comment_list}}" wx:for-item="list">
+                                    <view class="p">
+                                        <view>
+                                            <image src="{{list.avatar}}"></image>
+                                            <text>{{list.nickname}}</text>
+                                            <text>{{list.score}}分</text>
+                                        </view>
+                                        <view>{{list.date}}</view>
+                                    </view>
+                                    <view class="p">{{list.content}}</view>
+                                    <view class="evaluateImg clearfix">
+                                        <view wx:for="{{list.comment_list}}">
+                                            <image src="{{item.file}}"></image>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="showTxt showTxtMore recordTxt" wx:if="{{(commentData.comment_list!='')&&(!commentData.next_page)}}">
+                                <text>没有更多记录啦!</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="showTxt smallImg" wx:if="{{productData.comment_data.total*1==0}}">
+                    <image src="../../images/shop_06.png" alt=""></image>
+                    <view>该商品还没有人发表评价!</view>
+                </view>
+            </view>
+            <view class="shopProduct {{currentTab==3 ? 'active' : ''}}">
+                <view class="showTxt smallImg" wx:if="{{productData.product_relation_list==''}}">
+                    <image src="../../images/shop_08.png" alt=""></image>
+                    <view>该店铺暂无其他商品!</view>
+                </view>
+                <view class="clearfix ulList">
+                    <view wx:for="{{productData.product_relation_list}}">
+                        <navigator url="/pages/product/details?product_id={{item.product_id}}" hover-class="none" open-type="navigate">
+                            <view class="productImg verticalCentering">
+                                <image src="{{item.image}}" alt=""></image>
+                                <text>{{item.name}}</text>
+                            </view>
+                            <view class="p">
+                                <text>¥{{item.price}}</text>
+                                <text>¥{{item.original_price}}</text>
+                            </view>
+                            <view class="p">销量:{{item.sales}}</view>
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="shoppingCatFooter">
+        <view class="timeLimit" wx:if="{{productData.product.quantity==0}}">已售罄</view>
+        <view class="clearfix ulList" wx:if="{{productData.product.is_reservation*1==1}}">
+            <view class="shoppingCatButton" data-type="make" bindtap="oppenShopping" data-product="{{productData.product.product_id}}">预约</view>
+        </view>
+        <view class="clearfix  ulList" wx:if="{{productData.product.is_reservation*1!=1}}">
+            <view class="shoppingCatButton self_buy" data-type="self_buy" bindtap="oppenShopping" data-product="{{productData.product.product_id}}">
+                立即购买</view>
+            <view class="shoppingCatButton add_cart" data-type="add_cart" bindtap="oppenShopping" data-product="{{productData.product.product_id}}">
+                <text class="iconfont icon-gouwuche1" data-type="add_cart" data-product="{{productData.product.product_id}}"></text>加入购物车</view>
+        </view>
+    </view>
+    <block wx:if="{{shoppingData.shoppingShow}}">
+        <template is="shoppingCat" data="{{shoppingData:shoppingData,animation:animation,warning:warning}}" />
+    </block>
+    <template is="warning" wx:if="{{warning.warningShow}}" data="{{warningTxt:warning.warningTxt}}" />
+</scroll-view>

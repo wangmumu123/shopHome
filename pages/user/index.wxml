@@ -1,0 +1,85 @@
+<!--个人中心页面-->
+<view class="container user" data-page="page.user.index">
+        <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <view class="userHeader clearfix">
+        <image src="../../images/bg_03.png" class="userBack"></image>
+        <view class="userImg">
+            <image class="userImgBack" src="{{userData.user.avatar}}"></image>
+        </view>
+        <view class="userInfo">
+            <view class="userName">{{userData.user.nickname}}</view>
+        </view>
+    </view>
+    <view class="userOrder clearfix">
+        <view>
+            <text class="iconfont icon-daifukuan" data-status="unpay" bindtap="orderListGo"></text>
+            <text data-status="unpay">待付款</text>
+        </view>
+        <view>
+            <text class="iconfont icon-daifahuo" data-status="unsend" bindtap="orderListGo"></text>
+            <text data-status="unsend">待发货</text>
+        </view>
+        <view>
+            <text class="iconfont icon-yifahuo" data-status="send" bindtap="orderListGo"></text>
+            <text data-status="send">已发货</text>
+        </view>
+        <view>
+            <text class="iconfont icon-yiwancheng" data-status="complete" bindtap="orderListGo"></text>
+            <text data-status="complete">已完成</text>
+        </view>
+        <view>
+            <text class="iconfont icon-iconwddd" data-status="all" bindtap="orderListGo"></text>
+            <text data-status="all">我的订单</text>
+        </view>
+    </view>
+    <view class="userLinke">
+        <view class="userLinkeCentent clearfix v1">
+            <navigator url="/pages/shoppingCat/index" hover-class="none" open-type="switchTab">
+                <text class="iconfont icon-gouwuche"></text>
+                <text>购物车</text>
+            </navigator>
+        </view>
+        <view class="userLinkeCentent clearfix v2">
+            <navigator url="/pages/coupons/coupons" hover-class="none" open-type="navigate">
+                <text class="iconfont icon-quan"></text>
+                <text>礼券</text>
+            </navigator>
+        </view>
+        <view class="userLinkeCentent clearfix v3">
+            <navigator url="/pages/user/myCollection/index" hover-class="none" open-type="navigate">
+                <text class="iconfont icon-shoucang"></text>
+                <text>我的收藏</text>
+            </navigator>
+        </view>
+        <view class="userLinkeCentent clearfix v4">
+            <navigator url="/pages/coupons/membership" hover-class="none" open-type="navigate">
+                <text class="iconfont icon-huiyuanqia"></text>
+                <text>会员卡</text>
+            </navigator>
+        </view>
+        <view class="userLinkeCentent clearfix v5">
+            <navigator url="/pages/user/myServer/index" hover-class="none" open-type="navigate">
+                <text class="iconfont icon-shouhoufuwu"></text>
+                <text>我的售后</text>
+            </navigator>
+        </view>
+        <view class="userLinkeCentent clearfix v6">
+            <navigator url="/pages/user/address/index" hover-class="none" open-type="navigate">
+                <text class="iconfont icon-address"></text>
+                <text>收货地址</text>
+            </navigator>
+        </view>
+        <view class="userLinkeCentent clearfix v7">
+            <navigator url="/pages/user/appointment/index" hover-class="none" open-type="navigate">
+                <text class="iconfont icon-yuyue"></text>
+                <text>我的预约</text>
+            </navigator>
+        </view>
+        <view class="userLinkeCentent clearfix v8">
+            <navigator url="/pages/coupons/extension" hover-class="none" open-type="navigate">
+                <text class="iconfont icon-zizhutuiguang"></text>
+                <text>推广本店</text>
+            </navigator>
+        </view>
+    </view>
+</view>

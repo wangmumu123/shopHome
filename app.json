@@ -1,0 +1,72 @@
+{
+    "pages": [
+ 
+        
+        "pages/index/index",
+        "pages/index/login",
+        "pages/index/page",
+        "pages/index/shopHomeList",
+        "pages/product/details",
+        "pages/shoppingCat/index",
+        "pages/coupons/extension",
+        "pages/coupons/membership",
+        "pages/coupons/coupons",
+        "pages/index/coupons",
+        "pages/product/productList",
+        "pages/product/recommend",
+        "pages/payment/index",
+        "pages/user/index",
+        "pages/user/order/index",
+        "pages/user/order/orderList",
+        "pages/user/order/publishedEvaluation",
+        "pages/user/order/evaluation",
+        "pages/user/order/returnGoods",
+        "pages/user/order/rightGoods",
+        "pages/user/order/returnCompletion",
+        "pages/user/order/rightCompletion",
+        "pages/user/myCollection/index",
+        "pages/user/myServer/index",
+        "pages/user/appointment/index",
+        "pages/user/address/index",
+        "pages/user/address/addressEdit"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTextStyle": "#000",
+        "navigationBarTitleText": "深圳邮局微店",
+        "backgroundColor": "#ffffff",
+        "backgroundTextStyle": "light"
+    },
+    "tabBar": {
+        "color": "#888888",
+        "selectedColor": "#fe6b31",
+        "borderStyle": "white",
+        "backgroundColor": "#fff",
+        "list": [{
+            "selectedIconPath": "images/tabActive_10.png",
+            "iconPath": "images/tab_10.png",
+            "pagePath": "pages/index/index",
+            "text": "首页"
+        }, {
+            "selectedIconPath": "images/tabActive_13.png",
+            "iconPath": "images/tab_13.png",
+            "pagePath": "pages/product/recommend",
+            "text": "分类"
+        }, {
+            "selectedIconPath": "images/tabActive_14.png",
+            "iconPath": "images/tab_14.png",
+            "pagePath": "pages/shoppingCat/index",
+            "text": "新品"
+        }, {
+            "selectedIconPath": "images/tabActive_16.png",
+            "iconPath": "images/tab_16.png",
+            "pagePath": "pages/user/index",
+            "text": "购物车"
+        }, {
+            "selectedIconPath": "images/tabActive_16.png",
+            "iconPath": "images/tab_16.png",
+            "pagePath": "pages/user/index",
+            "text": "我的"
+        }]
+    }
+}

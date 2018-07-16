@@ -1,0 +1,7 @@
+<!-- titel -->
+<template name="title">
+    <view class="editStoreTextNavigation show_method_{{show_method}}" data-page="page.public.editStoreTextNavigation" style="background:{{content.content.bgcolor}}">
+        <view class="shopHomeTitle">{{content.content.title}}</view>
+        <text>{{content.content.sub_title}}</text>
+    </view>
+</template>

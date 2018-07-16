@@ -1,0 +1,7 @@
+<!--  店铺抬头2 -->
+<template name="rich_text">
+    <import src="/pages/think/template/template.wxml" />
+    <view class="rich_text">
+        <template is="THINK-html" data="{{data:content.content}}" />
+    </view>
+</template>

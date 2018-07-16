@@ -1,0 +1,6 @@
+<!--收货地址列表-->
+<import src="../../public/choiceAddress.wxml" />
+<view class="container addressPages" data-page="page.address.index">
+
+    <template is="choiceAddress" data="{{addressData:addressData,currentTab:currentTab}}" />
+</view>

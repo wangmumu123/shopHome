@@ -1,0 +1,155 @@
+<!--支付页面-->
+<import src="../public/payment.wxml" />
+<import src="../public/choiceAddress.wxml" />
+<import src="../public/editAddress.wxml" />
+<import src="../think/template/template.wxml" />
+<import src="../public/warning.wxml" />
+<view class="container payment" data-page="page.payment.index">
+    <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <view class="paymentPostage">
+        <view>
+            <view class="{{paymentPostage==index ? 'active' : ''}}" data-paymentpostage="{{index}}" bindtap="{{paymentData.order.type!='10'? 'paymentPostage':''}}" wx:for="{{paymentData.logistic_list}}">{{item.name}}</view>
+        </view>
+    </view>
+    <template is="payment" data="{{paymentData:paymentData,postage:postage,paymentPostage:paymentPostage}}" />
+    <view class="paymentInfo  {{paymentPostage==1 ? 'active' : 'customInfo'}}" wx:if="{{paymentData.order.type!='10'}}">
+        <view class="customMessage">
+            <text>预约人姓名</text>
+            <view class="input">
+                {{paymentData.user_address.name}}
+            </view>
+        </view>
+        <view class="customMessage">
+            <text>预约人联系方式</text>
+            <view class="input">
+                {{paymentData.user_address.tel}}
+            </view>
+        </view>
+        <view class="customMessage">
+            <text>预约时间</text>
+            <view class="input">
+                <view class="section">
+                    <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+                        <view class="picker">
+                            {{date}}
+                        </view>
+                    </picker>
+                </view>
+                <view class="section">
+                    <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+                        <view class="picker">
+                            {{time}}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--     <view class="paymentInfo" wx:if="{{paymentData.order.type=='10'}}">
+    <view class="customMessage" wx:for="{{paymentData.product_list[0].comment_arr}}">
+        <text>{{item.name}}</text>
+        <view class="input">
+            {{item.value}}
+        </view>
+    </view>
+</view> -->
+    <view class="paymentInfo" wx:if="{{paymentData.order.type!='10'}}">
+        <view class="open ticket" wx:for="{{paymentData.user_coupon_list}}" wx:if="{{paymentData.order.status=='0'}}">优惠券
+            <text bindtap="oppenCoupon" data-index="{{index}}" wx:if="{{oppenCouponTxt[index]}}">{{oppenCouponTxt[index]}}</text>
+            <text bindtap="oppenCoupon" data-index="{{index}}" class="redCoupon" wx:if="{{!oppenCouponTxt[index]}}">可用 {{item.length}}张</text>
+        </view>
+        <view class="  ticket" wx:for="{{paymentData.user_coupon_list}}" wx:if="{{paymentData.order.status=='1'}}">优惠券
+            <text data-index="{{index}}">{{item.cname}}</text>
+        </view>
+        <view class="fullCut" wx:for="{{paymentData.reward_list}}">
+            <view>满减</view>{{item.reward_content}}
+        </view>
+        <view class="integral" bindtap="integral" wx:if="{{(paymentData.points_data)&&integralTxt}}">
+            <text class="iconfont {{integral}}"></text>{{integralTxt}}</view>
+        <view class="integral" wx:if="{{paymentData.order_point.money}}">
+            <text class="iconfont active"></text>使用{{paymentData.order_point.point}}积分抵扣￥{{paymentData.order_point.money}}元</view>
+    </view>
+    <view class="paymentInfo Need" wx:if="{{paymentData.order.type!='10'}}">
+        <view>商品总价￥{{paymentData.order.sub_total}}
+            <block>+运费￥{{paymentData.order.postage*1}}</block>
+            <block wx:if="{{discountPrice}}">-折扣￥{{discountPrice}}</block>
+            <block wx:if="{{rewardPrice}}">-满减￥{{rewardPrice}}</block>
+            <block wx:if="{{integralPricePage}}">-积分抵扣￥{{integralPricePage}}</block>
+            <block wx:if="{{couponMoney}}">-优惠券￥{{couponMoney}}</block>
+        </view>
+        <view>合计:¥
+            <block wx:if="{{paymentMoney>0}}">{{paymentMoney}}</block>
+            <block wx:if="{{paymentMoney<=0}}">0</block>
+        </view>
+    </view>
+    <view class="paymentInfo Need" wx:if="{{paymentData.order.type=='10'}}">
+        <view></view>
+        <view>预约定金:¥{{paymentData.order.total}}</view>
+    </view>
+    <view class="paymentButton" wx:if="{{(postage)||(paymentPostage==1)}}">
+        <view class="button" bindtap="paymentButton">微信支付</view>
+    </view>
+    <view class="paymentButton" wx:if="{{(postage==false)&&(paymentPostage!=1)}}">
+        <text class="red"> 此地区不支持配送!请选择其他地区</text>
+    </view>
+</view>
+<block wx:if="{{addressList}}">
+    <view class="layer" bindtap="closeAddress"></view>
+    <view class="logisticsLayer">
+        <view class="logisticsLayerTitle">选择收货地址</view>
+        <template is="choiceAddress" data="{{addressData:addressData,currentTab:currentTab}}" />
+    </view>
+</block>
+<block wx:if="{{addressEdit}}">
+    <view class="layer" bindtap="closeAddress"></view>
+    <view class="logisticsLayer">
+        <view class="logisticsLayerTitle">收货地址</view>
+        <view class="addressPages">
+            <template is="editAddress" data="{{user_address:user_address,province_index:province_index,province_name_arr:province_name_arr,city_index:city_index,city_name_arr:city_name_arr,country_index:country_index,country_name_arr:country_name_arr,country_index:country_index,warning:warning}}" />
+        </view>
+    </view>
+</block>
+<block wx:if="{{oppenShopList}}">
+    <view class="layer" bindtap="oppenShopList"></view>
+    <view class="shoppingLayer">
+        <view class="shoppingTitle black">选择门店
+            <text class="iconfont icon-chacha" bindtap="oppenShopList"></text>
+        </view>
+        <view class="shopHomeList">
+            <view class="" wx:for="{{paymentData.selffetch_list}}">
+                <image src="{{item.logo}}"></image>
+                <view class="addressInfo">
+                    <view>
+                        <text>{{item.address}}</text>
+                        <text class="iconfont icon-telephone" bindtap="calling" data-num="{{item.tel}}"></text>
+                    </view>
+                    <view>
+                        <text>{{item.juli}} </text>
+                        <text wx:if="{{!item.business_hours}}">营业时间：全天</text>
+                        <text wx:if="{{item.business_hours}}"> 营业时间：{{item.business_hours}}</text>
+                    </view>
+                </view>
+                <text wx:if="{{item.is_valid==1}}" class="choice {{productList==index?'active':''}}" data-productList="{{index}}" bindtap="productListSwichNav" data-index="{{index}}">选择</text>
+                <text wx:if="{{item.is_valid==0}}" class="choice gray">不可选</text>
+            </view>
+        </view>
+    </view>
+</block>
+<block wx:if="{{oppenCoupon}}">
+    <view class="layer" bindtap="oppenCoupon"></view>
+    <view class="shoppingLayer">
+        <view class="shoppingTitle black">选择优惠券
+            <text class="iconfont icon-chacha" bindtap="oppenCoupon"></text>
+        </view>
+        <view class="shopHomeList">
+            <view wx:for="{{paymentData.user_coupon}}" class="clearfix">
+                <view class="addressInfo shopCoupon">
+                    <text class="shopCouponName textOmitted">{{item.cname}}</text>
+                    <text>￥{{item.face_money}}</text>
+                </view>
+                <text class="choice {{couponTab==index?'active':''}}" data-couponTab="{{index}}" data-couponPrice="{{item.face_money}}" data-couponTxt="{{item.cname}}" data-couponId="{{item.coupon_id}}" data-self="{{item.is_self}}" bindtap="CouponSwichNav">选择</text>
+            </view>
+        </view>
+    </view>
+</block>
+<template is="warning" wx:if="{{warning.warningShow}}" data="{{warningTxt:warning.warningTxt}}" />

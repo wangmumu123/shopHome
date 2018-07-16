@@ -1,0 +1,17 @@
+<!-- 餐饮小食1 -->
+<template name="goods_group1">
+    <import src="../public/productList.wxml" />
+    <view class="editProductGrouping  goodsGrouping" data-page="page.public.editProductGrouping">
+        <view class="productGrouping clearfix">
+            <view class="productNav">
+                <view class="{{currentTab==index ? 'active' : ''}}" wx:for="{{content.goods_group_list}}" data-current="{{index}}" bindtap="swichNav">{{item.title}}</view>
+            </view>
+            <view class="productGroupingList editProduct">
+                <view class="shopProductTable {{currentTab==index ? 'active' : ''}} size_3 buy_btn_type_2" wx:for="{{content.goods_group_list}}" wx:for-item="list">
+                    <view class="editProductGroupingTitle">{{list.title}}</view>
+                    <template is="productList" data="{{content:list,productTable:productTable}}" />
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

@@ -1,0 +1,22 @@
+<import src="../public/editProductSearch.wxml" />
+<!--商品搜索 -->
+<import src="../public/warning.wxml" />
+<!--警告提示-->
+<view class="container">    <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <template is="search" data="{{keyword:keyword,placeholder:'搜索门店'}}" />
+    <view class="shopDetailsInfo shopHomeList ">
+        <view class="clearfix open li" wx:for="{{shopHomeData}}" bindtap="goShopList" data-id="{{item.pigcms_id}}">
+            <view data-id="{{item.pigcms_id}}">
+                <view class="" data-id="{{item.pigcms_id}}">{{item.name}}<block wx:if="{{item.main_store*1}}">(总店)</block></view>
+                <text class="" data-id="{{item.pigcms_id}}">{{item.address}}</text>
+            </view>
+            <view class="span" data-id="{{item.pigcms_id}}">
+                <text data-id="{{item.pigcms_id}}">
+                    <block wx:if="{{item.distance==undefined}}">设置地址</block>
+                    <block wx:if="{{item.distance!=undefined}}">{{item.distance}}</block>
+                </text>
+            </view>
+        </view>
+    </view>
+    <template is="warning" wx:if="{{warning.warningShow}}" data="{{warningTxt:warning.warningTxt}}" />
+</view>

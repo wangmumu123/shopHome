@@ -1,0 +1,33 @@
+<!--我的收藏列表-->
+<view class="container">
+    <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh" data-page="page.myCollection.index">
+        <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+        <view class="orderState">
+            <view class="orderStateList myCollection">
+                <view class="orderList">
+                    <view class="orderContent" wx:for="{{orderlistData.product_list}}" wx:for-item="order">
+                        <navigator url="/pages/product/details?product_id={{order.product_id}}" hover-class="none" open-type="navigate">
+                            <view class="orderContentList">
+                                <view class="productImg">
+                                    <image src="{{order.image}}"></image>
+                                </view>
+                                <view class="productInfo">
+                                    <view class="productName serverName">
+                                        <text class="t1 textOmitted">{{order.name}}</text>
+                                    </view>
+                                    <view class="productPrice">¥{{order.price}}
+                                        <text>{{order.status_txt}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="productdDefault" wx:if="{{orderlistData.product_list==''}}">
+                    <image src="../../../images/shop_03.png"> </image>
+                    <text>你还没有收藏商品哦!</text>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>

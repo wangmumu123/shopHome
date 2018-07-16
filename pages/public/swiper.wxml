@@ -1,0 +1,21 @@
+<!--图片导航-->
+<template name="image_ad">
+    <swiper class="indexSwiper bgF" autoplay="false" interval="5500" indicator-dots="true" data-page="page.public.swiper">
+        <swiper-item wx:for-items="{{content.nav_list}}" wx:key="menuId">
+            <view style="background:url('{{item.image}}') center; background-size:cover" class="view">
+                <navigator url="{{item.url}}" hover-class="none" open-type="{{item.type=='switchTab'?'switchTab':'navigate'}}">
+                    <text>{{item.title}}</text>
+                </navigator>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view class="indexSwiper imageSwiper bgF image_size_{{content.image_size}}" data-page="page.public.swiper">
+        <view wx:for-items="{{content.nav_list}}" style="background:url('{{item.image}}'); background-size:cover" class="view">
+            <navigator url="{{item.url}}" class="navigator" hover-class="none" open-type="{{item.type=='switchTab'?'switchTab':'navigate'}}">
+                {{item.url}}
+                
+                <text>{{item.title}}</text>
+            </navigator>
+        </view>
+    </view>
+</template>

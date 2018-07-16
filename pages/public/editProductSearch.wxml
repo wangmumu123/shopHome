@@ -1,0 +1,10 @@
+<!-- 商品搜索 -->
+<template name="search">
+    <view class="editProductSearchPa" data-page="page.public.editProductSearch">
+        <view class="editProductSearch">
+            <text class="iconfont icon-chazhao" bindtap="wxSearchFn"></text>
+            <input type="text" placeholder="{{!placeholder?'请搜索商品':placeholder}}" bindinput="wxSearchInput" value="{{keyword}}"></input>
+            <text bindtap="wxSearchFn">搜索</text>
+        </view>
+    </view>
+</template>

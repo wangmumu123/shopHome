@@ -1,0 +1,29 @@
+<!--我的订单详情页面-->
+<import src="../../public/payment.wxml" />
+<import src="../../public/logistics.wxml" />
+<import src="../../public/appointment.wxml" />
+<view class="container payment" data-page="page.order.index">
+    <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <template is="payment" data="{{paymentData:orderData,postage:postage,orderAddress:orderAddress}}" />
+    <template is="logistics" wx:for="{{orderData.package_list}}" data="{{package_list:item,logistics:logistics,logisticsShow:logisticsShow}}" />
+    <!--     <view class="paymentButton" wx:if='{{orderData.order.status==6}}'>
+    <view bindtap="returnGo" data-order="{{orderData.order.order_no_txt}}" data-id="{{orderData.product_list[0].pigcms_id}}">查看退货</view>
+</view> -->
+    <view class="paymentButton" wx:if='{{orderData.order.status==3}}'>
+        <view bindtap="completeReceipt">确认收货</view>
+    </view>
+    <view class="paymentButton" wx:if="{{orderData.order.is_comment }}">
+        <navigator url="/pages/user/order/{{orderData.order.comment_btn=='评价'?'publishedEvaluation':'evaluation'}}?order_id={{orderData.order.order_id}}" hover-class="none" open-type="navigate">
+            <view >{{orderData.order.comment_btn}}</view>
+        </navigator>
+    </view>
+    <view class="paymentButton" wx:if='{{(orderData.order.type*1==10)*(orderData.order.status!= 4)}}'>
+        <view bindtap="appointment">预约核销码</view>
+    </view>
+    <view class="paymentButton" wx:if='{{(orderData.order.status==7)&&has_return}}'>
+        <view bindtap="cancelOrder" bindtap="completeOrder" data-order="{{orderData.order.order_no_txt}}">交易完成</view>
+    </view>
+    <block>
+        <template is="appointment" wx:if="{{appointment}}" data="{{verify_image_code:orderData.order.verify_image_code}}" />
+    </block>
+</view>

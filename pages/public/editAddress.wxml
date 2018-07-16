@@ -1,0 +1,49 @@
+<!--选择默认地址通用模板-->
+<import src="../public/warning.wxml" />
+<template name="editAddress">
+    <form bindsubmit="addressSave" bindreset="formReset">
+        <view class="addressEdit">
+            <view class="addressEditList">
+                <view class="addressEditCentent">
+                    <text>收货人</text>
+                    <input type="text" name="name" placeholder="姓名" value="{{user_address.name}}" />
+                </view>
+                <view class="addressEditCentent">
+                    <text>联系电话</text>
+                    <input type="text" name="tel" placeholder="手机或固话" value="{{user_address.tel}}" />
+                </view>
+                <view class="addressEditCentent">
+                    <text>选择地区</text>
+                    <view class="regionSelection">
+                        <picker name="province" bindchange="pickerProvince" value="{{province_index}}" range="{{province_name_arr}}">
+                            <view class="picker">
+                                {{province_name_arr[province_index]}}
+                            </view>
+                        </picker>
+                        <picker name="city" bindchange="pickerCity" value="{{city_index}}" range="{{city_name_arr}}">
+                            <view class="picker">
+                                {{city_name_arr[city_index]}}
+                            </view>
+                        </picker>
+                        <picker name="area" bindchange="pickerCountry" value="{{country_index}}" range="{{country_name_arr}}">
+                            <view class="picker">
+                                {{country_name_arr[country_index]}}
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="addressEditCentent">
+                    <text>详细地址</text>
+                    <input type="text" name="address" placeholder="街道门牌号" value="{{user_address.address}}" />
+                </view>
+                <view class="addressEditCentent">
+                    <text>邮政编码</text>
+                    <input type="text" name="zipcode" placeholder="邮政编码" value="{{user_address.zipcode}}" />
+                </view>
+            </view>
+            <button class="submit" formType="submit">提交</button>
+            <!--     <button class="cancel">取消</button> -->
+        </view>
+    </form>
+    <template is="warning" wx:if="{{warning.warningShow}}" data="{{warningTxt:warning.warningTxt}}" />
+</template>

@@ -1,0 +1,53 @@
+<!--商品列表页面-->
+<import src="../public/productList.wxml" />
+<import src="../public/editProductSearch.wxml" />
+<import src="../public/shoppingCat.wxml" />
+<!-- 购物车 -->
+<import src="../public/warning.wxml" />
+<!--警告提示-->
+<scroll-view scroll-top="{{scrollTop}}" class="editProduct container" scroll-y="true" style="height:{{scrollHeight}}px;" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh" data-page="pages.product.productList">
+        <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <view class="asideDetails ">
+        <text class="goTop iconfont icon-dingbu" bindtap="goTopFun"></text>
+        <navigator url="/pages/shoppingCat/index" hover-class="none" open-type="switchTab">
+            <text class="iconfont icon-gouwuche1 shoppingCatIcon" wx:if="{{shoppingCatNum}}"></text>
+        </navigator>
+    </view>
+    <view class="productTop">
+        <view class="productTopFiexd">
+            <template is="search" data="{{keyword:keyword}}" />
+            <view class="productTitle clearfix bgF">
+                <view class="{{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav" data-sort="">
+                    <text class="{{currentTab==0 ? 'active' : ''}}" data-current="0" data-sort="">综合</text>
+                </view>
+                <view class="{{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav" data-sort="sales">
+                    <text class="{{currentTab==1 ? 'active' : ''}}" data-current="1" data-sort="sales">销量</text>
+                </view>
+                <view class="{{currentTab==2 ? 'active' : ''}}" data-current="2" bindtap="swichNav" data-sort="new">
+                    <text class="{{currentTab==2 ? 'active' : ''}}" data-current="2" data-sort="new">新品</text>
+                </view>
+                <view class="sort {{priceTab}} {{currentTab==3 ? 'active' : ''}}" data-current="3" bindtap="swichNav" data-sort="priceTab">
+                    <view data-current="3" data-sort="priceTab">
+                        <text class="price" data-current="3" data-sort="priceTab">价格</text>
+                        <view data-current="3" data-sort="priceTab">
+                            <text class="iconfont icon-shang Arrow" data-current="3" data-sort="priceTab"></text>
+                            <text class="iconfont icon-xia Arrow" data-current="3" data-sort="priceTab"></text>
+                        </view>
+                    </view>
+                </view>
+                <view class="{{productTable}}" bindtap="productTable">
+                    <text class="iconfont icon-pailiefangshi02"></text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="editProduct">
+        <view class="shopProductTable {{productTable}}" style="display:block">
+            <template is="productList" data="{{content:productListData}}" />
+        </view>
+    </view>
+    <block wx:if="{{shoppingData.shoppingShow}}">
+        <template is="shoppingCat" data="{{shoppingData:shoppingData,animation:animation,warning:warning}}" />
+    </block>
+    <template is="warning" wx:if="{{warning.warningShow}}" data="{{warningTxt:warning.warningTxt}}" />
+</scroll-view>

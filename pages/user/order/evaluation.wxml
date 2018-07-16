@@ -1,0 +1,26 @@
+<!--我的订单-订单评价页面-->
+<import src="../../public/warning.wxml" />
+<view class="container" data-page="page.order.publishedEvaluation">
+    <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <view class="evaluationList" wx:for="{{evaluationData.order_product_list}}">
+        <view class="orderShop">
+            <view class="clearfix">
+                <view class="productImg verticalCentering">
+                    <image src="{{item.image}}"></image>
+                </view>
+                <view class="productInfo ">
+                    <view class="h2"><text>已评价 {{item.comment.score}}星</text><text>{{item.comment.dateline}}</text></view>
+                    <view name=""   value="">{{item.comment.content}}</view>
+                </view>
+            </view>
+            <view class="evaluation">
+                <text   class="active" wx:for="{{item.comment.tag_list}}" wx:for-item="list">{{list}}</text>
+            </view>
+            <view class="clearfix dl" wx:if="{{item.comment.attachment_list}}">
+                <view wx:for="{{item.comment.attachment_list}}" wx:for-item="list"><image src="{{list}}"></image></view>
+             </view>
+        </view>
+     
+    </view>
+    
+</view>

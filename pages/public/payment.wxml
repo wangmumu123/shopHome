@@ -1,0 +1,124 @@
+<!--拼团相关 产品信息以及支付订单模板-->
+<import src="../public/shoppingProduct.wxml" />
+<template name="payment" data-page="page.public.payment">
+    <view class="address paymentShop   {{paymentPostage==0 ? 'active' : ''}} {{paymentData.order.shipping_method=='express'?'active':''}} {{(paymentData.order.status==0)&&(orderAddress!=true)?'notPaid':''}}" wx:if="{{paymentData.wxapp_address}}" bindtap="{{(paymentData.order.status==0)&&(orderAddress!=true)?'addressGo':''}}" data-payment="payment">
+        <text class="iconfont icon-receipt-address-address"></text>
+        <view class="addressInfo">
+            <view wx:if="{{paymentData.wxapp_address.list_count==0}}">请添加地址</view>
+            <view wx:if="{{paymentData.wxapp_address.list_count!=0}}">
+                <text>{{paymentData.wxapp_address.address_tel}}</text>
+                <text>{{paymentData.wxapp_address.address_user}}</text>
+            </view>
+            <view wx:if="{{paymentData.wxapp_address.list_count!=0}}">
+                {{paymentData.wxapp_address.province}} {{paymentData.wxapp_address.city}} {{paymentData.wxapp_address.area}} {{paymentData.wxapp_address.address}}
+            </view>
+            <view>
+            </view>
+        </view>
+    </view>
+    <view class="address paymentShop {{(paymentData.order.status==0)&&(orderAddress!=true)?'notPaid':''}} paymentShop {{paymentPostage==1 ? 'active' : ''}}" bindtap="{{(paymentData.order.status==0)?'oppenShopList':''}}" wx:if="{{paymentData.order.status*1==0}}">
+        <block wx:if="{{paymentData.shopData}}">
+            <image src="{{paymentData.shopData.logo}}"></image>
+            <view class="addressInfo">
+                <view>
+                    <text>{{paymentData.shopData.name}}</text>
+                    <text></text>
+                    <text class="iconfont icon-telephone" bindtap="calling" data-num="{{paymentData.shopData.tel}}"></text>
+                </view>
+                <view>
+                    <block wx:if="{{paymentData.shopData.business_hours}}">营业时间：{{paymentData.shopData.business_hours}}</block>
+                    <block wx:if="{{!paymentData.shopData.business_hours}}">营业时间：全天</block>
+                </view>
+                <view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{!paymentData.shopData}}">
+            请选择门店
+            <view class="addressInfo">
+                <view></view>
+            </view>
+        </block>
+    </view>
+    <view wx:if="{{(paymentData.order.shipping_method=='selffetch')&&(paymentData.order.status!='1')}}">
+        <view class="address">
+            <text class="iconfont icon-receipt-address-address"></text>
+            <view class="addressInfo">
+                <view>
+                    <text>{{paymentData.address.name}}</text>
+                    <text bindtap="calling" data-num="{{paymentData.address.tel}}">{{paymentData.address.tel}}<text class="iconfont icon-telephone telephone" data-num="{{paymentData.address.tel}}"> </text>
+                    </text>
+                </view>
+                <view>
+                    {{paymentData.address.province}} {{paymentData.address.city}} {{paymentData.address.area}} {{paymentData.address.address}}
+                </view>
+                <view>
+                </view>
+            </view>
+        </view>
+        <view class="paymentInfo" wx:if="{{paymentData.order.type!='10'}}">
+            <view>预约人：{{paymentData.address.address_user}} {{paymentData.address.address_tel}}</view>
+            <view>预约时间：{{paymentData.address.date}} {{paymentData.address.time}}</view>
+        </view>
+    </view>
+    <view class="paymentInfo" wx:if="{{paymentData.order.type=='10'}}">
+        <view class="customMessage" wx:for="{{paymentData.product_list[0].comment_arr}}">
+            <text>{{item.name}}</text>
+            <view class="input">
+                {{item.value}} <block wx:if="{{item.value==''}}">无</block>
+            </view>
+        </view>
+    </view>
+    <view class="address" wx:if="{{(paymentData.order.status=='1')&&paymentData.shopData}}">
+        <text class="iconfont icon-receipt-address-address"></text>
+        <view class="addressInfo">
+            <view>
+                <text>{{paymentData.shopData.store_name}}</text>
+                <text></text>
+                <text class="iconfont icon-telephone" bindtap="calling" data-num="{{paymentData.shopData.store_tel}}"></text>
+            </view>
+            <view>
+                <block wx:if="{{paymentData.shopData.business_hours}}">营业时间：{{paymentData.shopData.business_hours}}</block>
+                <block wx:if="{{!paymentData.shopData.business_hours}}">营业时间：全天</block>
+            </view>
+            <view>
+            </view>
+        </view>
+    </view>
+    <view class="paymentProduct">
+        <view class="shopName" wx:if="{{paymentData.store}}">
+            <navigator url="/pages/index/index" hover-class="none" open-type="switchTab">
+                <view>
+                    <image src="{{paymentData.store.logo}}"></image>
+                </view>
+                <text>{{paymentData.store.name}}</text></navigator>
+        </view>
+        <template is="shoppingProduct" wx:for="{{paymentData.product_list}}" data="{{product:item,status:paymentData.order.status,order_no_txt:paymentData.order.order_no_txt,type:paymentData.order.type}}" />
+    </view>
+    <view class="paymentInfo" wx:if="{{!paymentData.orderInfo}}">
+        <view class="shopName customMessage">
+            <text>买家留言</text>
+            <view class="input" wx:if="{{paymentData.order.status*1}}">
+                {{paymentData.order.comment}}
+                <block wx:if="{{!paymentData.order.comment}}">无</block>
+            </view>
+            <view class="input" wx:if="{{paymentData.order.status*1==0}}" style="background:#f9f9f9;">
+                <input type="text" placeholder="填写对本次交易的说明" bindblur="customMessage"></input>
+            </view>
+        </view>
+        <view wx:if="{{postage}}">运费：{{(paymentData.order.postage==0)||(paymentData.order.postage==undefined)?'免运费':'¥'+paymentData.order.postage}}</view>
+        <view wx:if="{{!postage}}">运费：该地区不支持配送,请选择其他地址</view>
+        <view wx:if="{{(paymentData.order.status=='0')||(paymentData.order.status=='1')}}">总价：
+            <text>¥{{paymentData.order.sub_total}}</text>
+        </view>
+        <view wx:if="{{(paymentData.order.status!='0')&&(paymentData.order.status!='1')}}">总价：
+            <text>¥{{paymentData.order.pay_money}}</text>
+        </view>
+        <view wx:if="{{paymentData.order.type=='10'}}">预约定金：
+            <text>¥{{paymentData.order.reservation_deposit}}</text>
+        </view>
+        <view wx:if="{{paymentData.order.order_no}}">订单编号：{{paymentData.order.order_no}}</view>
+        <view wx:if="{{paymentData.order.add_time_txt}}">下单时间：{{paymentData.order.add_time_txt}}</view>
+        <view wx:if="{{paymentData.order.pay_time_txt}}">支付时间：{{paymentData.order.pay_time_txt}}</view>
+    </view>
+</template>

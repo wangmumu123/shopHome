@@ -1,0 +1,72 @@
+<!--我的订单列表页面-->
+<view class="container">
+    <view class="containerLayer" wx:if="{{!containerLayer}}"></view>
+    <scroll-view class="orderState" scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh" data-page="page.order.index">
+        <view class="clearfix orderStateHeader">
+            <view class="fixedHeader">
+                <view class="{{currentTab=='all' ? 'active' : ''}}" bindtap="swichNav" data-current="all">
+                    <text data-current="all">全部</text>
+                </view>
+                <view class="{{currentTab=='unpay' ? 'active' : ''}}" bindtap="swichNav" data-current="unpay">
+                    <text data-current="unpay">待付款</text>
+                </view>
+                <view class="{{currentTab=='unsend' ? 'active' : ''}}" bindtap="swichNav" data-current="unsend">
+                    <text data-current="unsend">待发货</text>
+                </view>
+                <view class="{{currentTab=='send' ? 'active' : ''}}" bindtap="swichNav" data-current="send">
+                    <text data-current="send">待收货</text>
+                </view>
+                <view class="{{currentTab=='complete' ? 'active' : ''}}" bindtap="swichNav" data-current="complete">
+                    <text data-current="complete">已完成</text>
+                </view>
+            </view>
+        </view>
+        <view class="orderStateList">
+            <view class="orderList" wx:for="{{orderlistData.order_list}}" wx:for-item="order" wx:if="{{order}}">
+                <view class="orderTitle">
+                    <view class="">
+                        <text class="iconfont icon-store "></text>{{order.store}}</view>
+                    <view class="orderTag">
+                        <text class="iconfont icon-jingxuan"></text>{{order.typeTxt}}</view>
+                </view>
+                <view class="orderContent">
+                    <view class="orderContentList" wx:for="{{order.order_product_list}}">
+                        <navigator url="/pages/product/details?product_id={{item.product_id}}" hover-class="none" open-type="navigate">
+                            <view class="productImg">
+                                <image src="{{item.image}}"></image>
+                            </view>
+                            <view class="productInfo">
+                                <view class="productName">{{item.name}}</view>
+                                <view class="productPrice">¥{{item.pro_price}}
+                                    <block wx:if="{{item.is_present*1}}">赠品</block>
+                                    <text>x{{item.pro_num}}</text>
+                                </view>
+                                <view class="orderInfo">
+                                    <block wx:for="{{item.sku_data_arr}}" wx:for-item="sku_data_arr">{{sku_data_arr.name}}:{{sku_data_arr.value}} </block>
+                                </view>
+                            </view>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="orderFooter">
+                    <view class="orderTotal">                        <block wx:if="{{order.type!='10'}}"> <text>合计: </text> <text>¥{{order.total}}</text>
+                        </block>                        <block wx:if="{{order.type=='10'}}"> <text>预约定金: </text> <text>¥{{order.reservation_deposit}}</text></block>
+                    </view>
+                    <view class="orderButton">
+                        <text class="cancelOrder" wx:if="{{(order.status==1)||(order.status==0)}}" bindtap="cancelOrder" data-order="{{order.order_no_txt}}" data-index="{{index}}">取消</text>
+                        <text class="paymentGo" wx:if="{{(order.status==1)||(order.status==0)}}" bindtap="paymentGo" data-order="{{order.order_no_txt}}">去支付</text>
+                        <text class="completeReceipt" wx:if="{{order.status==3}}" bindtap="completeReceipt" data-order="{{order.order_no_txt}}" data-index="{{index}}">确认收货</text>
+                        <navigator url="/pages/user/order/{{order.comment_btn=='评价'?'publishedEvaluation':'evaluation'}}?order_id={{order.order_id}}" wx:if="{{order.is_comment}}" hover-class="none" open-type="navigate">
+                            <text class="completeReceipt">{{order.comment_btn}}</text></navigator>
+                        <text class="completeOrder" wx:if="{{(order.status*1==7)&&(!item.has_return)}}" bindtap="completeOrder" data-order="{{order.order_no_txt}}" data-index="{{index}}"> 交易完成</text>
+                        <text class="orderGo" wx:if="{{(order.status*1!=0)&&(order.status*1!=1)}}" bindtap="orderGo" data-order="{{order.order_no_txt}}">查看订单</text>
+                    </view>
+                </view>
+            </view>
+            <view class="productdDefault" wx:if="{{orderlistData.order_list==''}}">
+                <image src="../../../images/shop_03.png"> </image>
+                <text>列表为空!</text>
+            </view>
+        </view>
+    </scroll-view>
+</view>

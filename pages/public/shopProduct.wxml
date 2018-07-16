@@ -1,0 +1,15 @@
+<!-- 商品 -->
+<template name="goods">
+    <import src="../public/productList.wxml" />
+    <view class="shopProduct editProduct " data-page="page.public.editProduct">
+        <view class="shopTop open clearfix bgF" wx:if="{{!shopTitle}}">
+            <navigator url="/pages/product/productList" class="navigator" hover-class="none" open-type="navigate">
+                <text>店铺商品</text>
+                <text>MORE</text>
+            </navigator>
+        </view>
+        <view>
+            <template is="productList" data="{{content:content.productList}}" />
+        </view>
+    </view>
+</template>

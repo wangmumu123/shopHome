@@ -1,0 +1,11 @@
+<!-- 优惠券 -->
+<template name="coupons">
+    <view class="shopCouponList clearfix mB16" data-page="page.public.shopCouponList">
+        <view class="c{{index+1}} iconfont icon-youhuiquan" wx:for="{{content.content}}">
+            <navigator url="/pages/index/coupons" hover-class="none" open-type="navigate">
+                <text>￥{{item.face_money}}</text>
+                <text>{{item.title}}</text>
+            </navigator>
+        </view>
+    </view>
+</template>

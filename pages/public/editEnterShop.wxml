@@ -1,0 +1,12 @@
+<!-- 进入店铺 -->
+<template name="store">
+    <view class="editEnterShop open" data-page="page.public.editEnterShop">
+        <view>
+            <text class="iconfont icon-storek"></text>
+            {{content.name}}
+        </view>
+        <navigator url="/pages/index/index" class="navigator" hover-class="none" open-type="redirect">进入店铺
+            
+        </navigator>
+    </view>
+</template>

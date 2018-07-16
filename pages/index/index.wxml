@@ -1,0 +1,84 @@
+<!--富文本-->
+<import src="../public/editText.wxml" />
+<!--主页页面-->
+<import src="../public/swiper.wxml" />
+<!-- 图片广告 -->
+<import src="../public/editEnterShop.wxml" />
+<!-- 进入店铺  -->
+<import src="../public/editGuide.wxml" />
+<!-- 辅助空白-->
+<import src="../public/editGuideBlank.wxml" />
+<!-- 辅助线  -->
+<import src="../public/editImageNav.wxml" />
+<!--图片导航 -->
+<import src="../public/editProductGrouping.wxml" />
+<!-- 餐饮小食1 -->
+<import src="../public/editProductList.wxml" />
+<!-- 餐饮小食2 -->
+<import src="../public/editProductSearch.wxml" />
+<!--商品搜索 -->
+<import src="../public/editStoreCollection.wxml" />
+<!--店铺收藏和预览-->
+<import src="../public/editStoreTextNavigation.wxml" />
+<!--标题 -->
+<import src="../public/pageHeaderOne.wxml" />
+<!-- 网页抬头1 -->
+<import src="../public/pageHeaderTwo.wxml" />
+<!-- 网页抬头2 -->
+<import src="../public/shopCouponList.wxml" />
+<!-- 优惠券 -->
+<import src="../public/shopIndex.wxml" />
+<!-- 店铺动态 -->
+<import src="../public/shopNotice.wxml" />
+<!-- 店铺公告 -->
+<import src="../public/shopProduct.wxml" />
+<!-- 商品 -->
+<import src="../public/shoppingCat.wxml" />
+<!-- 购物车 -->
+<import src="../public/warning.wxml" />
+<!--警告提示-->
+
+ <!-- 富文本 商品 标题 商品搜索 辅助线 辅助空白 进入店铺 公告 餐饮小食1 餐饮小食2 网页抬头1,2 店铺收藏和预览 图片导航 图片广告 店铺动态 优惠券 -->
+<scroll-view class="container" style="height: {{scrollHeight}}px; background:{{shopHomeData.bgcolor}} " scroll-y="true" scroll-top="{{scrollTop.scroll_top}}" data="page.index.index">
+   <view class="height:200rpx; width: 600rpx; background: #0b8;"
+></view>
+    <view class="asideDetails ">
+        <text class="goTop iconfont icon-dingbu" bindtap="goTopFun"></text>
+        <navigator url="/pages/shoppingCat/index" hover-class="none" open-type="switchTab">
+            <text class="iconfont icon-gouwuche1 shoppingCatIcon" wx:if="{{shoppingCatNum}}"></text>
+        </navigator>
+    </view>
+
+    <view class="shopHomeHeader">
+        <image src="{{shopHomeData.store.logo}}"></image>
+        <view class="span">
+            <view class="p">
+                <navigator href="#/shopHome/486">
+                    <text>{{shopHomeData.store.name}}</text>
+                </navigator>
+            </view>
+            <view class="p" wx:if="{{(shopHomeData.store.physical_count>0)&&(shopHomeData.store.physical_title!='')}}">
+                <navigator class="textOmitted" bindtap="mapData" url="" data-physical="{{shopHomeData.store.physical_id}}">
+                    <text class="iconfont icon-dizhi text"></text>门店:{{shopHomeData.store.physical_title}}</navigator>
+                <navigator url="/pages/index/shopHomeList">
+                    <text class="iconfont icon-qiehuan"></text>切换</navigator>
+            </view>
+            <view class="p" wx:if="{{(shopHomeData.store.physical_count<=0)||(shopHomeData.store.physical_title=='')}}">
+                <navigator  url=""   bindtap="mapData" data-physical="">
+                    <text class="iconfont icon-dizhi"></text>本店</navigator>
+            </view>
+        </view>
+        <view class="span">
+            <navigator url="/pages/user/index" hover-class="none" open-type="switchTab">会员中心</navigator>
+        </view>
+    </view>
+    <template  is="image_ad" data="{{content:item}}" />
+    <template  is="image_nav" data="{{content:item}}" />
+    <template  is="search" data="{{content:item}}" />
+        <template  is="goods" data="{{content:item}}" />
+
+    <block wx:if="{{shoppingData.shoppingShow}}">
+        <template is="shoppingCat" data="{{shoppingData:shoppingData,animation:animation,warning:warning}}" />
+    </block>
+    <template is="warning" wx:if="{{warning.warningShow}}" data="{{warningTxt:warning.warningTxt}}" />
+</scroll-view>

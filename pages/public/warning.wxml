@@ -1,0 +1,6 @@
+<!--弹出警告框提示模板-->
+<template name="warning">
+    <view class="wartning" data-page="page.public.warning">
+        <text>{{warningTxt}}</text>
+    </view>
+</template>

@@ -1,0 +1,14 @@
+<!-- 店铺收藏 -->
+<template name="attention_collect">
+    <view class="editStoreCollection" data-page="page.public.editStoreCollection">
+        <view class="ulList">
+            <view bindtap="collectShop" >
+                收藏店铺(<text>{{content.collect}}</text>)
+            </view>
+            <view>
+                <navigator url="/pages/index/index" class="navigator" hover-class="none" open-type="redirect">浏览店铺</navigator>
+            </view>
+        </view>
+        <view class="createShop"></view>
+    </view>
+</template>

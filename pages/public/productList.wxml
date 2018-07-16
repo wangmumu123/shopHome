@@ -1,0 +1,34 @@
+<!-- 公共商品列表 -->
+<template name="productList">
+    <view class="clearfix shopProductList " data-page="page.public.productList">
+        <view class="clearfix" wx:for="{{content}}">
+            <navigator url="/pages/product/details?product_id={{item.product_id}}" class="navigator" hover-class="none" open-type="navigate">
+                <view class="productImg verticalCentering">
+                    <image src="{{item.image}}" mode="widthFix"></image>
+                </view>
+            </navigator>
+            <view class="productInfo clearfix ">
+                <navigator url="/pages/product/details?product_id={{item.product_id}}" hover-class="none" open-type="navigate">
+                    <text class="productName textOmitted">{{item.name}}</text>
+                    <view>销量:{{item.sales}}</view>
+                    <text class="productPrice">￥{{item.price}}</text>
+                </navigator>
+                <text bindtap="oppenShopping" data-type="add_cart" wx:if="{{item.is_reservation*1!=1}}" data-product="{{item.product_id}}">
+                    <text class="shoppingCatButton" bindtap="oppenShopping">
+                    </text>
+                </text>
+                <text bindtap="oppenShopping" class="appointment" data-type="make" wx:if="{{item.is_reservation*1==1}}" data-product="{{item.product_id}}">
+                    <text> 预约</text>
+                </text>
+            </view>
+
+        </view>
+    </view>
+    <view class="promptMsg" wx:if="{{content.product_list==''}}">
+        <navigator url="/pages/index/index" hover-class="none" open-type="switchTab">
+            <text class="iconfont icon-zanwuneirong"></text>
+            <text>暂无该商品</text>
+            <text>看看别的</text>
+        </navigator>
+    </view>
+</template>
