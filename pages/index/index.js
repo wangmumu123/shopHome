@@ -68,6 +68,34 @@ Page({
                     title: '1231',
                     sales: '234234',
                     price: 230,
+                },
+                {
+                    image: '../../images/imgTxt.png',
+                    ulr: '',
+                    title: '1231',
+                    sales: '234234',
+                    price: 230,
+                },
+                {
+                    image: '../../images/imgTxt.png',
+                    ulr: '',
+                    title: '1231',
+                    sales: '234234',
+                    price: 230,
+                },
+                {
+                    image: '../../images/imgTxt.png',
+                    ulr: '',
+                    title: '1231',
+                    sales: '234234',
+                    price: 230,
+                },
+                {
+                    image: '../../images/imgTxt.png',
+                    ulr: '',
+                    title: '1231',
+                    sales: '234234',
+                    price: 230,
                 }
 
             ]

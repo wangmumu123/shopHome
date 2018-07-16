@@ -9,7 +9,7 @@
             </view>
         </swiper-item>
     </swiper>
-    <view class="indexSwiper imageSwiper bgF image_size_{{content.image_size}}" data-page="page.public.swiper">
+    <!-- <view class="indexSwiper imageSwiper bgF image_size_{{content.image_size}}" data-page="page.public.swiper">
         <view wx:for-items="{{content.nav_list}}" style="background:url('{{item.image}}'); background-size:cover" class="view">
             <navigator url="{{item.url}}" class="navigator" hover-class="none" open-type="{{item.type=='switchTab'?'switchTab':'navigate'}}">
                 {{item.url}}
@@ -17,5 +17,5 @@
                 <text>{{item.title}}</text>
             </navigator>
         </view>
-    </view>
+    </view> -->
 </template>
