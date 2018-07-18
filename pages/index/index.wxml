@@ -1,10 +1,8 @@
-
 <!-- 主页页面 -->
 <import src="../public/swiper.wxml" />
 <!-- 图片广告 -->
 <import src="../public/editEnterShop.wxml" />
 <!-- 进入店铺 -->
-
 <import src="../public/editImageNav.wxml" />
 <!-- 图片导航 -->
 <import src="../public/editProductGrouping.wxml" />
@@ -20,7 +18,6 @@
 <import src="../public/pageHeaderOne.wxml" />
 <!-- 网页抬头1 -->
 <import src="../public/pageHeaderTwo.wxml" />
-
 <!-- 优惠券 -->
 <import src="../public/shopIndex.wxml" />
 <!-- 店铺动态 -->
@@ -46,25 +43,67 @@
         <template is="image_ad" data="{{content:item}}" />
         <template is="search" data="{{content:item}}" />
     </view>
-    <template is="image_nav" data="{{content:item}}" />
+    <view class="nav-img-list">
+        <template is="image_nav" data="{{content:item}}" />
+        <view class="roll-text ">
+            <view class="roll-img">
+                <image class src="../../images/WechatIMG52_03.png"></image>
+            </view>
+            <text class="new-text">最新</text>
+            <view class="text-ul">
+                <view>别再被坑了，旗舰别再被坑了，旗舰机和中端机到</view>
+            </view>
+            <text class="move-button">更多</text>
+        </view>
+    </view>
+    <view class="images-content">
+        <image src="../../images/E43C20F2-1D51-42F3-A578-6469D942616D@3x.png"></image>
+    </view>
+    <view class="sale-active">
+        <view class="sale-title">
+            <image src="../../images/WechatIMG52_03.png"></image>
+        </view>
+        <view class="active-product">
+            <view class="product-info">
+                <view class="product-img">
+                    <image src="../../images/B3EAE4B9-C106-4A03-AFFF-A5063BD6B57F@3x.png"></image>
+                </view>
+                <view class="product-info"></view>
+            </view>
+            <view class="today-active">
+                明
+                <br />
+                日
+                <br />
+                预
+                <br />
+                告
+                <text></text>
+            </view>
+        </view>
+        <view class="new-product">
+            <view>
+                <image src="../../images/WechatIMG52_10.png"></image>
+            </view>
+            <view>
+                <image src="../../images/WechatIMG52_10.png"></image>
+            </view>
+        </view>
+    </view>
     <view class="shopProduct editProduct ">
-        <ul class="nav-list clearfix">
-            <li>
-            精选
-            </li>
-            <li>
-            电器
-            </li>
-            <li>
-            杂志
-            </li>
-            <li>
-            母婴
-            </li>
-            <li>
-            美妆
-            </li>
-        </ul>
+        <scroll-view scroll-x>
+            <view class="nav-list clearfix">
+                <text class="active">精选</text>
+                <text>电器</text>
+                <text>杂志</text>
+                <text>母婴</text>
+                <text>美妆</text>
+                <text>洗护</text>
+                <text>营养</text>
+                <text>健身</text>
+                <text>护理</text>
+            </view>
+        </scroll-view>
         <template is="productList" data="{{content:item.productList}}" />
     </view>
     <block wx:if="{{shoppingData.shoppingShow}}">

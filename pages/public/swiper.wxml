@@ -4,7 +4,7 @@
         <swiper-item wx:for-items="{{content.nav_list}}" wx:key="menuId">
             <view style="background:url('{{item.image}}') center; background-size:cover" class="view">
                 <navigator url="{{item.url}}" hover-class="none" open-type="{{item.type=='switchTab'?'switchTab':'navigate'}}">
-                    <text>{{item.title}}</text>
+                    <!-- <text>{{item.title}}</text> -->
                 </navigator>
             </view>
         </swiper-item>

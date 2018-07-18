@@ -32,9 +32,9 @@
     ],
     "window": {
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTextStyle": "#000",
+        "navigationBarTextStyle":"black",
         "navigationBarTitleText": "深圳邮局微店",
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#fe5842",
         "backgroundTextStyle": "light"
     },
     "tabBar": {
