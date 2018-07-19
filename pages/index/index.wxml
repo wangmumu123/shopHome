@@ -61,14 +61,31 @@
     </view>
     <view class="sale-active">
         <view class="sale-title">
-            <image src="../../images/WechatIMG52_03.png"></image>
+            <span>
+                每日必逛
+            </span>
         </view>
         <view class="active-product">
             <view class="product-info">
                 <view class="product-img">
                     <image src="../../images/B3EAE4B9-C106-4A03-AFFF-A5063BD6B57F@3x.png"></image>
                 </view>
-                <view class="product-info"></view>
+                <view class="product-text">
+                    <view class="product-title">德国Aptamil爱他美婴儿奶粉</view>
+                    <span>
+                        <i></i>
+                        平均每包低至158元
+                    </span>
+                    <span>
+                        <i></i>
+                        银联支付全场前2千名减50
+                    </span>
+                    <i>
+                        ¥
+                        <b>188</b>
+                    </i>
+                    <button>马上抢</button>
+                </view>
             </view>
             <view class="today-active">
                 明

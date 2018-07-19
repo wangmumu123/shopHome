@@ -145,12 +145,44 @@ swiper {
 
 .sale-active {
   background: #fff;
+  padding-top: 1rpx;
+  padding-bottom: 10rpx;
 }
 
 .sale-title {
   margin: 18rpx auto;
   width: 179rpx;
   height: 32rpx;
+  text-align: center;
+}
+
+.sale-title span {
+  display: block;
+  margin: 20rpx 0;
+  font-size: 32rpx;
+  height: 28rpx;
+  color: #49a01b;
+  line-height: 32rpx;
+  padding: 0 10rpx;
+  position: relative;
+  border-left: 4rpx solid #49a01b;
+  border-right: 4rpx solid #49a01b;
+}
+
+.sale-title span::before, .sale-title span::after {
+  opacity: 0.21;
+  background: #49a01b;
+  width: 4rpx;
+  height: 20rpx;
+  content: '';
+  position: absolute;
+  left: -6rpx;
+  top: 4rpx;
+}
+
+.sale-title span::after {
+  left: inherit;
+  right: -6rpx;
 }
 
 .today-active {
@@ -188,11 +220,83 @@ swiper {
 
 .product-info {
   flex: 1;
+  display: flex;
 }
 
 .product-img {
-  width: 216px;
-  height: 173px;
+  width: 190rpx;
+  height: 170rpx;
+  margin: 60rpx 32rpx;
+}
+
+.product-text {
+  flex: 1;
+  line-height: 40rpx;
+  padding: 10rpx 0;
+}
+
+.product-text span {
+  font-size: 28rpx;
+  color: #373737;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.product-text span::before {
+  opacity: 0.45;
+  background: #fa7c74;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 100%;
+  left: 0;
+  top: 15rpx;
+  content: '';
+  position: absolute;
+}
+
+.product-text>i {
+  font-size: 28rpx;
+  color: #f86359;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -9rpx;
+}
+
+.product-text>i b {
+  font-size: 40rpx;
+  color: #f86359;
+}
+
+.product-text>button {
+  background: #f86359;
+  border-radius: 2px;
+  margin-left: 20rpx;
+  width: 100rpx;
+  height: 40rpx;
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ffffff;
+  line-height: 40rpx;
+  padding: 0;
+  display: inline-block;
+  border: 0;
+}
+
+.product-info .product-title {
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  color: #848484;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  margin-top: 30rpx;
 }
 
 image {
@@ -611,6 +715,7 @@ swiper.indexSwiper text, .imageSwiper view text {
 
 .shopProduct {
   background: #fff;
+  margin-top: 20rpx;
 }
 
 .nav-list {
@@ -1677,9 +1782,9 @@ price_ 是否显示价格
 }
 
 .roll-img {
-  width:180rpx;
-  height:38rpx;
-  margin-top:4rpx;  
+  width: 180rpx;
+  height: 38rpx;
+  margin-top: 4rpx;
 }
 
 .text-ul {
@@ -1694,11 +1799,13 @@ price_ 是否显示价格
   white-space: nowrap;
   overflow: hidden;
 }
+
 .images-content {
   width: 710rpx;
   height: 135rpx;
   margin: 20rpx;
 }
+
 .nav-img-list {
   margin: 20rpx 2.5%;
   background: #fff;
@@ -1708,6 +1815,7 @@ price_ 是否显示价格
 .editImageNav {
   background: #fff;
   width: 95%;
+  padding: 15rpx 0;
   border-radius: 10rpx;
 }
 
