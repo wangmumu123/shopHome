@@ -59,11 +59,127 @@
     <view class="images-content">
         <image src="../../images/E43C20F2-1D51-42F3-A578-6469D942616D@3x.png"></image>
     </view>
+    <view class="sale-active time-active">
+        <view class="sale-title">
+            <span>好货特卖</span>
+        </view>
+        <view class="sale-content">
+            <view class="sale-time">
+                <span>限时抢购</span>
+                <view>
+                    <i>00</i>
+                    :
+                    <i>12</i>
+                    :
+                    <i>22</i>
+                    <b>12点场剩余时间</b>
+                </view>
+            </view>
+            <view class="active-product">
+                <ul class="point-pro">
+                    <li>
+                        <view class="active-img">
+                            <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                        </view>
+                        <text>已抢51</text>
+                        <span>
+                            ¥
+                            <i>6565</i>
+                        </span>
+                    </li>
+                    <li>
+                        <view class="active-img">
+                            <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                        </view>
+                        <text>已抢51</text>
+                        <span>
+                            ¥
+                            <i>6565</i>
+                        </span>
+                    </li>
+                    <li>
+                        <view class="active-img">
+                            <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                        </view>
+                        <text>已抢51</text>
+                        <span>
+                            ¥
+                            <i>6565</i>
+                        </span>
+                    </li>
+                    <li>
+                        <view class="active-img">
+                            <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                        </view>
+                        <text>已抢51</text>
+                        <span>
+                            ¥
+                            <i>6565</i>
+                        </span>
+                    </li>
+                </ul>
+            </view>
+        </view>
+        <view class="new-product">
+            <ul class="active-list">
+                <li>
+                    <p>本周特惠</p>
+                    <span>最高达满减100</span>
+                    <ul class="point-pro">
+                        <li>
+                            <view class="active-img">
+                                <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                            </view>
+                            <text>已抢51</text>
+                            <span>
+                                ¥
+                                <i>6565</i>
+                            </span>
+                        </li>
+                        <li>
+                            <view class="active-img">
+                                <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                            </view>
+                            <text>已抢51</text>
+                            <span>
+                                ¥
+                                <i>6565</i>
+                            </span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>积分兑换</p>
+                    <span>尊享积分兑换专区</span>
+                    <ul class="point-pro">
+                        <li>
+                            <view class="active-img">
+                                <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                            </view>
+                            <text>已抢51</text>
+                            <span>
+                                ¥
+                                <i>6565</i>
+                            </span>
+                        </li>
+                        <li>
+                            <view class="active-img">
+                                <image src="../../images/F0A0B588-9AAB-4EFB-8692-C91B4A095937@3x.png"></image>
+                            </view>
+                            <text>已抢51</text>
+                            <span>
+                                ¥
+                                <i>6565</i>
+                            </span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </view>
+    </view>
     <view class="sale-active">
         <view class="sale-title">
-            <span>
-                每日必逛
-            </span>
+            <span>每日必逛</span>
         </view>
         <view class="active-product">
             <view class="product-info">

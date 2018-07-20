@@ -78,7 +78,7 @@ Page({
             ],
             productList: [
                 {
-                    image: '../../images/imgTxt.png',
+                    image: '../../images/0B624C6C-8118-44EB-9A3D-5871120D2873@3x.png',
                     ulr: '',
                     name: '九阳电饭锅电饭煲电饭锅',
                     title: '1231',
@@ -86,7 +86,7 @@ Page({
                     price: 230,
                 },
                 {
-                    image: '../../images/imgTxt.png',
+                    image: '../../images/B2EF5ADF-844D-4DCC-8EF2-60E216718796@3x.png',
                     ulr: '',
                     name: '九阳电饭锅电饭煲电饭锅',
                     title: '1231',
@@ -94,7 +94,7 @@ Page({
                     price: 230,
                 },
                 {
-                    image: '../../images/imgTxt.png',
+                    image: '../../images/F1AAD52F-507A-48C9-8314-F9AAD550B523@3x.png',
                     ulr: '',
                     name: '九阳电饭锅电饭煲电饭锅',
                     title: '1231',
@@ -102,7 +102,7 @@ Page({
                     price: 230,
                 },
                 {
-                    image: '../../images/imgTxt.png',
+                    image: '../../images/F1AAD52F-507A-48C9-8314-F9AAD550B523@3x.png',
                     ulr: '',
                     name: '九阳电饭锅电饭煲电饭锅',
                     title: '1231',
@@ -110,7 +110,7 @@ Page({
                     price: 230,
                 },
                 {
-                    image: '../../images/imgTxt.png',
+                    image: '../../images/B2EF5ADF-844D-4DCC-8EF2-60E216718796@3x.png',
                     ulr: '',
                     name: '九阳电饭锅电饭煲电饭锅',
                     title: '1231',
@@ -118,7 +118,7 @@ Page({
                     price: 230,
                 },
                 {
-                    image: '../../images/imgTxt.png',
+                    image: '../../images/F1AAD52F-507A-48C9-8314-F9AAD550B523@3x.png',
                     ulr: '',
                     name: '九阳电饭锅电饭煲电饭锅',
                     title: '1231',
@@ -126,7 +126,7 @@ Page({
                     price: 230,
                 },
                 {
-                    image: '../../images/imgTxt.png',
+                    image: '../../images/B2EF5ADF-844D-4DCC-8EF2-60E216718796@3x.png',
                     ulr: '',
                     name: '九阳电饭锅电饭煲电饭锅',
                     title: '1231',
